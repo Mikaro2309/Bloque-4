@@ -1,0 +1,39 @@
+class Libro:
+    def __init__(self, titulo, autor, isbn):
+        self.titulo = titulo
+        self.autor = autor
+        self.isbn = isbn
+        self.disponible = True
+
+    def prestar(self):
+        if self.disponible:
+            self.disponible = False
+            print(f"El libro '{self.titulo}' ha sido prestado.")
+        else:
+            print(f"El libro '{self.titulo}' no está disponible.")
+
+class Usuario:
+    def __init__(self, nombre, usuario_id):
+        self.nombre = nombre
+        self.usuario_id = usuario_id
+        self.prestamos = []
+
+    def solicitar_prestamo(self, libro):
+        if libro.disponible:
+            prestamo = Prestamo(self, libro)
+            self.prestamos.append(prestamo)
+            libro.prestar()
+        else:
+            print(f"El libro '{libro.titulo}' no está disponible para prestar.")
+
+class Prestamo:
+    def __init__(self, usuario, libro):
+        self.usuario = usuario
+        self.libro = libro
+        self.fecha_prestamo = '2024-10-21'  # Por simplicidad.
+
+# Uso:
+libro = Libro("Cien años de soledad", "Gabriel García Márquez", "1234567890")
+usuario = Usuario("Juan Pérez", "001")
+
+usuario.solicitar_prestamo(libro)
