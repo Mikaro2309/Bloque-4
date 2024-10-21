@@ -1,0 +1,30 @@
+class Personaje:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.componentes = {}
+
+    def agregar_componente(self, nombre_componente, componente):
+        self.componentes[nombre_componente] = componente
+
+    def ejecutar_accion(self, nombre_componente):
+        if nombre_componente in self.componentes:
+            self.componentes[nombre_componente].accion()
+        else:
+            print(f"{self.nombre} no tiene el componente {nombre_componente}.")
+
+# Componentes
+class ComponenteArma:
+    def accion(self):
+        print("El personaje ataca con su arma.")
+
+class ComponenteHabilidad:
+    def accion(self):
+        print("El personaje usa una habilidad especial.")
+
+# Uso:
+guerrero = Personaje("Guerrero")
+guerrero.agregar_componente("arma", ComponenteArma())
+guerrero.agregar_componente("habilidad", ComponenteHabilidad())
+
+guerrero.ejecutar_accion("arma")
+guerrero.ejecutar_accion("habilidad")
