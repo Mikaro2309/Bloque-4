@@ -1,0 +1,33 @@
+class Producto:
+    def __init__(self, nombre, precio, cantidad):
+        self.nombre = nombre
+        self.precio = precio
+        self.cantidad = cantidad
+
+    def actualizar_stock(self, cantidad):
+        self.cantidad += cantidad
+        print(f"Stock actualizado: {self.nombre}, Cantidad: {self.cantidad}")
+
+class Tienda:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.productos = []
+
+    def agregar_producto(self, producto):
+        self.productos.append(producto)
+
+    def mostrar_inventario(self):
+        print(f"Inventario de la tienda {self.nombre}:")
+        for producto in self.productos:
+            print(f"- {producto.nombre}: {producto.cantidad} unidades")
+
+# Uso:
+tienda = Tienda("Tienda Centro")
+producto1 = Producto("Laptop", 1000, 10)
+producto2 = Producto("Smartphone", 500, 20)
+
+tienda.agregar_producto(producto1)
+tienda.agregar_producto(producto2)
+
+tienda.mostrar_inventario()
+producto1.actualizar_stock(5)
